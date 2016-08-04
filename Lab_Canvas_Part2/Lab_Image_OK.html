@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab</title>
+</head>
+<body>
+
+    <canvas id="canvasLab" width="240" height="200"
+            style="border:1px solid #000000;"></canvas>
+    <canvas id="canvasSmall" width="120" height="100"
+            style="border:1px solid #000000;"></canvas>
+    <img id="imgView" width="120" height="100" style="border:1px solid #000000;" />
+
+    <div>
+        <a id="aDownload" href="#" download="loop.png">Download</a>
+    </div>
+
+    <img id="imgLoop"  src="loop.jpg" style="display: none;"/>
+
+    <script>
+
+        window.onload = init;
+
+        function init() {
+            var c = document.getElementById("canvasLab");
+            var ctx = c.getContext("2d");
+
+            ctx.arc(120, 100, 80, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.clip();
+            ctx.drawImage(imgLoop, 0, 0);
+
+            var ctxSmall = canvasSmall.getContext("2d");
+            // ctxSmall.drawImage(canvasLab, 0, 0);
+            ctxSmall.drawImage(canvasLab, 0, 0, 240, 200, 0, 0, 120, 100);
+            
+            delta = 100;
+            var imgData = ctxSmall.getImageData(0, 0, 120, 100);
+            for (var i = 0; i < imgData.data.length; i += 4) {
+                imgData.data[i] = 255 - imgData.data[i];
+                imgData.data[i + 1] = 255 - imgData.data[i + 1];
+                imgData.data[i + 2] = 255 - imgData.data[i + 2];
+                imgData.data[i + 3] = 128;
+            }
+            ctxSmall.putImageData(imgData, 0, 0);
+
+            console.log(canvasSmall.toDataURL("image/png"));
+            imgView.src = canvasSmall.toDataURL("image/png");
+
+            aDownload.href = canvasSmall.toDataURL("image/png");
+
+        }
+
+        
+    </script>
+
+</body>
+</html>

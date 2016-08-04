@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"
+	id="com.appdev1226.DemoGCM01" version="1.0.0">
+
+	<name>Demo GCM 01</name>
+
+	<description>
+		An app testing GCM
+	</description>
+
+	<author email="app.dev.1226@gmail.com">
+		Wolfgang Chien
+	</author>
+	
+	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
+	<access origin="*" />
+	<allow-intent href="*" />
+	<allow-navigation href="*" />
+
+    <plugin name="com.phonegap.plugins.pushplugin" spec="2.4.0" source="pgb" />
+    
+</widget>

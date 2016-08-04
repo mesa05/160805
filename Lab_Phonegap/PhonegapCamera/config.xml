@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.YourDomain.YourAppName"
+        version   = "1.0.0">
+
+    <name>Your App Name</name>
+
+    <description>
+        Description for your app.
+    </description>
+
+    <author email="author@SomeWhereOfThere.com">
+        Author email
+    </author>
+
+    <preference name="phonegap-version" value="3.3.0" /> 
+
+    <gap:plugin name="org.apache.cordova.core.camera" />
+</widget>

@@ -1,0 +1,80 @@
+Google Cloud Messaging 示範與練習
+
+<Note> 同學不妨動手試試看，希望老師能收到成功的推播通知喔! :-)
+
+
+
+1.  啟動 c9.io 你的 Workspace，上傳此版本的 Demo_GCM 資料夾
+
+
+
+2.  滑鼠點按任何資料夾 | Open Terminal Here，依序輸入下列指令並按下 <Enter> 鍵
+npm install cors
+npm install node-gcm
+exit
+    
+    <Note> 完成後，在 Workspace 的 node_modules 資料夾裏頭
+    應該會多出 cors 與 node-gcm資料夾。
+
+
+
+3.  找到 Server 資料夾的 Server.js，點兩下開啟檔案，
+    然後，點按功能表的「> Run」按鈕。
+    
+    <Note>請留意螢幕下方藍色區域，第一行應該類似
+    Your code is running at https://lab-appdev1226.c9users.io.
+    將 http://代號.c9users.io 的代號複製下來，等一下會用到。
+    
+    <Note>瀏覽器連接 http://代號.c9users.io/hello/人名
+    可測試 Server 是否順利執行。
+
+
+
+4.  找到 Client 資料夾的 index.html，點兩下開啟檔案，
+    搜尋下列這行，
+    var appUrl = "http://lab-appdev1226.c9users.io";
+    換成你的代號，像是這樣:
+    var appUrl = "http://代號.c9users.io";
+
+    <Note>記得要存檔喔! :-)
+
+
+
+5.  滑鼠右鍵 Client 資料夾 | Download
+    下載檔案，然後解壓縮還原 Client 資料夾。
+
+
+
+6.  將 Client 資料夾壓縮成 .zip 檔，上傳到
+    https://build.phonegap.com/
+    建立 Android 程式
+
+
+
+7.  QR Code reader 掃瞄螢幕 CR Code 下載 App
+    點按下載回來的 .apk 檔安裝程式
+    
+
+    
+8.  點按手機 App 的註冊按鈕
+    
+    <Note> 順利的話，Server 資料夾的 userList.txt 檔案，會多一個 GCM手機代碼
+    第一行: APA91bFCfoF_bZpwimvTvL... (老師的 GCM手機代碼)
+    第二行: 新的GCM手機代碼
+    
+    
+    
+9.  以任何瀏覽器，連接下列網址以傳送訊息:
+    http://lab-appdev1226.c9users.io/gcm/boardcast
+    
+    <Note>同樣地，lab-appdev1226請換成步驟三你的代號
+
+
+
+
+for Teacher:
+1   確定已在 https://cloud.google.com/console 建立專案
+    並且申請伺服器金鑰，
+2   核對程式的專案號碼與伺服器金鑰號碼
+3   清除 Server 資料夾的 userList.txt
+4   刪除 PhoneGap Build 的 App

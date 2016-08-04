@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>PhonegapCamera</h1>
+
+<button onclick="capturePhoto();">Capture Photo</button>
+<img style="display:none; width: 100%;" id="aImage" src="" />
+
+<script src="cordova.js"></script>
+<script>
+function capturePhoto() {
+	var options =   
+		{   quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
+            encodingType: 0     // 0=JPG 1=PNG
+        };	
+  navigator.camera.getPicture(onPhotoDataSuccess, onFail, options);
+}
+
+function onPhotoDataSuccess(imageData) {
+  var theImage = document.getElementById('aImage'); 
+  theImage.style.display = 'block';
+  theImage.src = "data:image/jpeg;base64," + imageData; 
+}
+
+function onFail(message) {
+  alert('Failed because: ' + message);
+} 
+
+</script>
+
+</body>
+</html>

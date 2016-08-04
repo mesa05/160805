@@ -1,0 +1,131 @@
+﻿Lab: Canvas 與 Image
+
+
+
+
+1. 在本資料夾新增一份 HTML 文件，檔名 Lab_Image.html，內容如下:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab</title>
+</head>
+<body>
+
+    <canvas id="canvasLab" width="240" height="200"
+            style="border:1px solid #000000;"></canvas>
+    <canvas id="canvasSmall" width="120" height="100"
+            style="border:1px solid #000000;"></canvas>
+    <img id="imgView" width="120" height="100" style="border:1px solid #000000;" />
+
+    <div>
+        <a id="aDownload" href="#">Download</a>
+    </div>
+
+    <img id="imgLoop"  src="loop.jpg" style="display: none;"/>
+
+    <script>
+
+        window.onload = init;
+
+        function init() {
+
+        }
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+2.	在 init() 函式貼入下列程式，完成後，以瀏覽器中檢視。
+
+            var c = document.getElementById("canvasLab");
+            var ctx = c.getContext("2d");
+
+            ctx.drawImage(imgLoop, 0, 0);
+
+	<Note>請問為什麼要在 load 事件執行繪製圖片的程式碼?
+
+
+
+
+3.	繼續在 init() 函式貼入下列程式，完成後，以瀏覽器中檢視。
+
+            ctx.arc(120, 100, 80, 0, 2 * Math.PI);
+            ctx.stroke();
+
+	<Note> 請試著描述如何利用 arc() 的第三個、第四個參數指定圖周的起迄。
+
+
+
+
+4.	將 init() 函式改成這樣:
+
+        function init() {
+            var c = document.getElementById("canvasLab");
+            var ctx = c.getContext("2d");
+
+            ctx.arc(120, 100, 80, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.clip();
+            ctx.drawImage(imgLoop, 0, 0);
+        }
+
+	<Note>完成後，在瀏覽器中檢視，試著說明 clip() 的作用。
+
+
+
+
+5.	繼續在 init() 函式貼入下列程式，完成後，在瀏覽器中檢視。
+
+            var ctxSmall = canvasSmall.getContext("2d");
+            // ctxSmall.drawImage(canvasLab, 0, 0);
+            ctxSmall.drawImage(canvasLab, 0, 0, 240, 200, 0, 0, 120, 100);
+	
+	<Note> 請參閱下列網址，對照上述程式了解各項參數的作用。
+	https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
+
+
+
+
+6.	繼續在 init() 函式貼入下列程式，完成後，在瀏覽器中檢視。
+
+            delta = 100;
+            var imgData = ctxSmall.getImageData(0, 0, 120, 100);
+            for (var i = 0; i < imgData.data.length; i += 4) {
+                imgData.data[i] = 255 - imgData.data[i];
+                imgData.data[i + 1] = 255 - imgData.data[i + 1];
+                imgData.data[i + 2] = 255 - imgData.data[i + 2];
+                imgData.data[i + 3] = 128;
+            }
+            ctxSmall.putImageData(imgData, 0, 0);
+
+
+
+
+7.	繼續在 init() 函式貼入下列程式，完成後，以瀏覽器中檢視。
+
+            console.log(canvasSmall.toDataURL("image/png"));
+            imgView.src = canvasSmall.toDataURL("image/png");
+
+	<Note>按下 F12 鍵，Console主控台顯示的是什麼?
+	<Note>請參閱下列兩個網址:
+	https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/data_URIs
+
+
+
+
+8-1	繼續在 init() 函式貼入下列程式，完成後，以瀏覽器中檢視並且點按「Download」超連結。
+	aDownload.href = canvasSmall.toDataURL("image/png");
+
+
+8-2	針對 id="aDownload" 的<a>元素，加入 download 屬性，如下: 
+		<a id="aDownload" href="#" download="loop.png">Download</a>
+
+
+8-3	再次以瀏覽器檢視網頁並且點按「Download」超連結。
+
